@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>POS Tracker — Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="brand-mark">₦</div>
+    <p class="eyebrow">3MTT NextGen Capstone</p>
+    <h1>POS Tracker</h1>
+    <p class="muted">Record transactions, monitor fees and keep your daily POS books organized.</p>
+
+    <p id="message" class="form-message" role="alert"></p>
+
+    <form id="loginForm" class="stack">
+      <label>Username<input id="username" required autocomplete="username" placeholder="e.g. blessingpos"></label>
+      <label>Password<input id="password" type="password" required autocomplete="current-password"
+          placeholder="Your password"></label>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+
+    <div class="divider"><span>First time?</span></div>
+
+    <form id="registerForm" class="stack">
+      <label>Create username<input id="newUsername" required minlength="3" placeholder="At least 3 characters"></label>
+      <label>Create password<input id="newPassword" type="password" required minlength="6"
+          placeholder="At least 6 characters"></label>
+      <button class="btn secondary" type="submit">Create agent account</button>
+    </form>
+  </main>
+  <script type="module" src="js/auth.js"></script>
+</body>
+
+</html>

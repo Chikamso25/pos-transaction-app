@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>POS Tracker — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">3MTT NextGen • POS Operations</p>
+      <h1>Daily POS Dashboard</h1>
+    </div>
+    <div class="top-actions">
+      <span id="usernameBadge" class="user-badge">Agent</span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Today's summary">
+      <article class="stat-card"><span>Total Volume</span><strong id="totalVolume">₦0.00</strong><small>Successful + pending</small></article>
+      <article class="stat-card"><span>Total Fees</span><strong id="totalFees">₦0.00</strong><small>Charges collected</small></article>
+      <article class="stat-card"><span>Transactions</span><strong id="totalTransactions">0</strong><small>All statuses</small></article>
+    </section>
+
+    <section class="layout-grid">
+      <article class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow" id="formEyebrow">Quick entry</p><h2 id="formTitle">Record transaction</h2></div>
+          <button id="cancelEdit" class="btn ghost hidden" type="button">Cancel edit</button>
+        </div>
+
+        <form id="transactionForm" class="form-grid">
+          <input type="hidden" id="transactionId">
+          <label>Type
+            <select id="type" required>
+              <option value="WITHDRAWAL">Withdrawal</option>
+              <option value="TRANSFER">Transfer</option>
+              <option value="DEPOSIT">Deposit</option>
+            </select>
+          </label>
+          <label>Amount (₦)<input id="amount" type="number" min="0" step="0.01" required placeholder="0.00"></label>
+          <label>Fee (₦)<input id="fee" type="number" min="0" step="0.01" value="0" required placeholder="0.00"></label>
+          <label>Status
+            <select id="status">
+              <option value="SUCCESS">Success</option>
+              <option value="PENDING">Pending</option>
+              <option value="FAILED">Failed</option>
+            </select>
+          </label>
+          <label class="full">Customer / Reference<input id="customerName" maxlength="120" placeholder="Customer name, phone or reference"></label>
+          <label class="full">Notes<textarea id="notes" maxlength="500" rows="3" placeholder="Optional details"></textarea></label>
+          <button class="btn primary full" id="submitBtn" type="submit">Save transaction</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">Today's breakdown</p><h2>Transaction mix</h2></div>
+        </div>
+        <div class="mix">
+          <div><span>Withdrawals</span><strong id="withdrawals">0</strong></div>
+          <div><span>Transfers</span><strong id="transfers">0</strong></div>
+          <div><span>Deposits</span><strong id="deposits">0</strong></div>
+        </div>
+        <div class="tip"><strong>Tip:</strong> Record fees as soon as the transaction is completed so your daily earnings stay accurate.</div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head history-head">
+        <div><p class="eyebrow">Transaction history</p><h2>Records</h2></div>
+        <div class="filters">
+          <input id="dateFilter" type="date" title="Filter by date">
+          <select id="typeFilter" title="Filter by type">
+            <option value="">All types</option>
+            <option value="WITHDRAWAL">Withdrawals</option>
+            <option value="TRANSFER">Transfers</option>
+            <option value="DEPOSIT">Deposits</option>
+          </select>
+          <button id="clearFilters" class="btn ghost" type="button">Clear</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast" role="status"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Type</th><th>Amount</th><th>Fee</th><th>Customer/Ref</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="transactionBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty hidden">No transactions found for the selected filters.</div>
+    </section>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
